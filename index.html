@@ -1,40 +1,279 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BANNED TOOLS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WEB BUG BY Zyn Hubs</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
-      text-align: center;
-      margin: 0;
-      padding: 0;
+    /* ===== background: try direct URL first (may or may not hotlink) =====
+       If it doesn't show, download the image and name it `background.jpg`
+       and GitHub Pages will serve it relative to this file.
+    */
+    :root{
+      --panel-bg: rgba(6,6,6,0.64);
+      --accent: #06b6d4;
+      --muted: #cbd5e1;
+      --btn:#0ea5a1;
+      --danger:#ef4444;
+      --white:#ffffff;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-    h1 {
-      margin: 20px;
-      font-size: 24px;
-      font-weight: bold;
+
+    html,body{
+      height:100%;
+      margin:0;
     }
-    .colorful {
-      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: bold;
+
+    /* If direct Google Photos link works, use it (may redirect) */
+    body{
+      background-image: url("https://photos.app.goo.gl/x9CebkyXPnCetWzA9");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 18px;
-      background: #222;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s;
+
+    /* Fallback: if you uploaded background.jpg to same repo, uncomment next rule */
+    /* body{ background-image: url("background.jpg"); } */
+
+    /* overlay for readability */
+    .overlay{
+      position:fixed;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.65));
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:18px;
+      box-sizing:border-box;
+    }
+
+    .card{
+      width:100%;
+      max-width:920px;
+      margin-top:18px;
+      background: var(--panel-bg);
+      border-radius:12px;
+      padding:16px;
+      box-shadow: 0 12px 40px rgba(2,6,23,0.6);
+      color:var(--white);
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:8px;
+    }
+    .back-top{
+      background:transparent;border:0;color:var(--white);font-size:20px;cursor:pointer;
+    }
+    h1{margin:0;font-size:18px;}
+
+    .grid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top:12px;
+    }
+    .btn{
+      min-width:180px;
+      padding:12px 14px;
+      border-radius:10px;
+      border:0;
+      background:rgba(255,255,255,0.06);
+      color:var(--white);
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .12s, box-shadow .12s, background .12s;
+      text-align:left;
+    }
+    .btn:hover{ transform:translateY(-6px); box-shadow:0 12px 30px rgba(2,6,23,0.6); background: rgba(255,255,255,0.09); }
+
+    .controls{ display:flex; gap:8px; margin-top:14px; justify-content:center; align-items:center; flex-wrap:wrap; }
+    input[type="text"]{ padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:var(--white); min-width:220px; }
+    .copy-manual{ padding:10px 12px; border-radius:8px; border:0; background:var(--btn); color:#022c22; font-weight:800; cursor:pointer; }
+
+    .footer{ text-align:center; margin-top:18px; color:var(--muted); font-size:14px;}
+    .moral{ font-style:italic; margin-top:8px; color:var(--muted); text-align:center;}
+
+    .devs{
+      display:inline-block;
+      margin-top:10px;
+      font-weight:800;
+      font-size:18px;
+      background: linear-gradient(90deg,#ff3cac,#784ba0,#2b86c5,#06d6a0,#ffd166);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      padding:6px 12px; border-radius:8px;
+      background-size:200% 200%; animation: rainbow 4s linear infinite;
+    }
+    @keyframes rainbow{ 0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%} }
+
+    /* How-to & Rules modals */
+    .modal-bg{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); z-index:80; }
+    .modal-card{ background:#071018; padding:18px; border-radius:12px; width:92%; max-width:640px; color:var(--muted); box-shadow:0 18px 40px rgba(2,6,23,0.6); }
+    .modal-card h3{ color:var(--white); margin-top:0; }
+    .modal-close{ margin-top:12px; padding:8px 10px; background:var(--danger); color:white; border:0; border-radius:8px; cursor:pointer; }
+
+    /* back-bottom */
+    .back-bottom{ position:fixed; left:18px; bottom:18px; background:rgba(0,0,0,0.6); color:var(--white); border:0; padding:10px 12px; border-radius:8px; cursor:pointer; z-index:90; }
+
+    @media (max-width:520px){
+      .btn{ min-width:140px; font-size:14px; text-align:center; }
+      input[type="text"]{ min-width:140px; width:60%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="card" role="main">
+      <header>
+        <button class="back-top" onclick="history.back()">←</button>
+        <h1>WEB BUG BY Zyn Hubs</h1>
+        <div style="margin-left:auto">
+          <button style="background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:8px;cursor:pointer" onclick="openModal('how')">How to use</button>
+        </div>
+      </header>
+
+      <div style="color:var(--muted);text-align:center">Pilih metode lalu isi nomor (opsional). Tombol menyalin teks ke clipboard.</div>
+
+      <div class="grid" aria-hidden="false">
+        <button class="btn" onclick="copyText('v1')"><strong>BANNED V1</strong><div style="font-size:12px;color:var(--muted);margin-top:6px">Lapor: kehilangan dokumen + SIM</div></button>
+
+        <button class="btn" onclick="copyText('v2')"><strong>BANNED V2</strong><div style="font-size:12px;color:var(--muted);margin-top:6px">Lapor: ponsel dicuri & butuh dinonaktifkan</div></button>
+
+        <button class="btn" onclick="copyText('v3')"><strong>BANNED V3</strong><div style="font-size:12px;color:var(--muted);margin-top:6px">Lapor: kehilangan dokumen + SIM (duplikat V1)</div></button>
+
+        <button class="btn" onclick="copyText('v4')"><strong>BANNED V4</strong><div style="font-size:12px;color:var(--muted);margin-top:6px">Template (Greek neutral)</div></button>
+
+        <button class="btn" onclick="copyText('trial')"><strong>BANNED Trial Phase</strong><div style="font-size:12px;color:var(--muted);margin-top:6px">Stolen phone report (formal)</div></button>
+      </div>
+
+      <div class="controls">
+        <input id="phone" type="text" placeholder="+62812xxxx" aria-label="Nomor target (opsional)">
+        <button class="copy-manual" id="manualBtn">Salin Pesan (Manual)</button>
+      </div>
+
+      <div class="moral"><em>"jangan ngebug orang yang tidak pernah salah dengan mu, jika tidak kau adalah pengecut."</em></div>
+      <div class="footer">WORKS IN WHATSAPP</div>
+      <div style="text-align:center"><span class="devs">Developers Zyn Hubs</span></div>
+
+      <div style="margin-top:12px;display:flex;gap:8px;justify-content:center">
+        <button onclick="openModal('rules')" style="padding:8px 12px;border-radius:8px;border:0;background:rgba(255,255,255,0.06);color:var(--white);cursor:pointer">RULES</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- How-to modal -->
+  <div id="howModal" class="modal-bg" onclick="closeModals(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <h3>How to use</h3>
+      <p>The way to use it is that you have to send the letter you copied on the home page to Gmail and send it to <b>support@support.whatsapp.com</b></p>
+      <button class="modal-close" onclick="closeModals(event)">Close</button>
+    </div>
+  </div>
+
+  <!-- Rules modal -->
+  <div id="rulesModal" class="modal-bg" onclick="closeModals(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <h3>RULES</h3>
+      <ul>
+        <li>Jangan bug nomor orang yang tidak bersalah.</li>
+        <li>Gunakan hanya untuk tujuan pembelajaran / testing.</li>
+        <li>Admin tidak bertanggung jawab atas penyalahgunaan.</li>
+        <li>Hargai privasi orang lain.</li>
+        <li>Ingat: Jika bug orang tanpa alasan, kamu adalah pengecut.</li>
+      </ul>
+      <button class="modal-close" onclick="closeModals(event)">Close</button>
+    </div>
+  </div>
+
+  <button class="back-bottom" onclick="history.back()">← Kembali</button>
+
+  <script>
+    // templates (updated per request)
+    function templateText(type, phone){
+      const p = phone ? phone : (type === 'v3' ? '+628XXX' : '+628XXX');
+      if(type === 'v1'){
+        return `Halo, saya kehilangan dokumen saya bersama dengan ponsel dan kartu SIM saya. jadi saya ingin Anda segera menonaktifkan nomor saya, saya takut seseorang dapat masuk ke akun whatsapp saya karena memiliki informasi penting tentang saya, nomornya adalah: ${p}`;
+      }
+      if(type === 'v2'){
+        return `Ponsel milik saya dicuri bersama dengan informasi saya dan saya perlu nomor whatsapp saya untuk dinonaktifkan! nomor saya adalah ${p}`;
+      }
+      if(type === 'v3'){
+        return `Halo, saya kehilangan dokumen saya bersama dengan ponsel dan kartu SIM saya. jadi saya ingin Anda segera menonaktifkan nomor saya, saya takut seseorang dapat masuk ke akun whatsapp saya karena memiliki informasi penting tentang saya, nomornya adalah: ${p}`;
+      }
+      if(type === 'v4'){
+        return `Γεια σας, υποστήριξη WhatsApp. Θα ήθελα να αναφέρω έναν λογαριασμό WhatsApp που υπάρχει υποψία ότι εμπλέκεται σε απαγορευμένες δραστηριότητες. Παρακαλώ ερευνήστε τον λογαριασμό που σχετίζεται με τον αριθμό ${p} και λάβετε τα κατάλληλα μέτρα εφόσον επιβεβαιωθούν παραβάσεις. Ευχαριστώ.`;
+      }
+      if(type === 'trial'){
+        return `Dear WhatsApp Support,
+
+My phone has been stolen together with my WhatsApp number. I am deeply concerned that my number might be misused for illegal purposes such as gambling advertisements or fraudulent activities. Therefore, I kindly request your immediate assistance to deactivate my WhatsApp account associated with this number for security reasons.
+
+My phone number: ${p}
+
+Thank you for your prompt attention to this matter.`;
+      }
+      return '';
+    }
+
+    async function copyText(version){
+      const phone = document.getElementById('phone').value.trim();
+      const text = templateText(version, phone);
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('Teks tersalin ✅');
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showToast('Teks tersalin (fallback) ✅'); }
+        catch { alert('Gagal menyalin. Silakan salin manual:\\n\\n' + text); }
+        document.body.removeChild(ta);
+      }
+    }
+
+    document.getElementById('manualBtn').addEventListener('click', () => {
+      copyText('v2'); // manual copies english style (v2)
+    });
+
+    function showToast(msg){
+      const t = document.createElement('div');
+      t.textContent = msg;
+      t.style.position = 'fixed';
+      t.style.right = '18px';
+      t.style.bottom = '18px';
+      t.style.background = 'rgba(0,0,0,0.8)';
+      t.style.color = 'white';
+      t.style.padding = '10px 12px';
+      t.style.borderRadius = '8px';
+      t.style.zIndex = '120';
+      document.body.appendChild(t);
+      setTimeout(()=>{ t.style.opacity='0'; t.remove(); }, 1600);
+    }
+
+    // modal controls
+    function openModal(name){
+      if(name === 'how') document.getElementById('howModal').style.display='flex';
+    }
+    function openModalRules(){ document.getElementById('rulesModal').style.display='flex'; }
+    function closeModals(e){
+      if(e) e.stopPropagation();
+      document.getElementById('howModal').style.display='none';
+      document.getElementById('rulesModal').style.display='none';
+    }
+    function openModal(mode){
+      if(mode === 'how') document.getElementById('howModal').style.display='flex';
+      if(mode === 'rules') document.getElementById('rulesModal').style.display='flex';
+    }
+  </script>
+</body>
+</html>      transition: background 0.3s;
     }
     .btn:hover {
       background: #444;
