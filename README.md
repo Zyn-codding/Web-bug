@@ -13,4 +13,4 @@ Website ini dibangun dengan HTML, CSS, dan JavaScript sederhana.
 ## 🚀 Cara Menjalankan
 1. Download atau clone repo ini:
    ```bash
-   git clone https://github.com/USERNAME/REPO.git
+   git clone https://github.com/Zyn-codding/REPO.git
