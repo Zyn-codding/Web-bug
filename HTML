@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WEB BUG BY Zyn Hubs</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --card:#f7f7f8;
+      --accent:#111827;
+      --muted:#6b7280;
+      --danger:#dc2626;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    body{
+      margin:0;background:var(--bg);color:var(--accent);-webkit-font-smoothing:antialiased;
+    }
+    .container{
+      max-width:920px;margin:28px auto;padding:20px;
+    }
+    header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    header h1{font-size:20px;margin:0}
+    .grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:18px;
+    }
+    .card{
+      background:var(--card);border-radius:18px;padding:18px;text-align:center;box-shadow:0 6px 18px rgba(15,23,42,0.06);
+    }
+    .icon{
+      width:72px;height:72px;border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:30px;
+      background:linear-gradient(180deg,#fff,#f4f4f6);box-shadow:0 6px 12px rgba(15,23,42,0.04);
+    }
+    .label{font-size:14px;color:var(--muted)}
+    .single{
+      display:flex;gap:12px;align-items:center;margin-top:22px;
+    }
+    input[type="text"]{
+      flex:1;padding:10px 12px;border-radius:10px;border:1px solid #e6e7eb;font-size:14px;
+    }
+    button{
+      padding:10px 14px;border-radius:10px;border:0;background:#0ea5a1;color:white;font-weight:600;cursor:pointer;
+    }
+    .note{font-size:13px;color:var(--muted);margin-top:10px}
+    .warning{
+      margin-top:18px;padding:14px;border-radius:12px;background:#fff7ed;border:1px solid #ffedd5;color:var(--danger);
+      font-weight:600;text-align:center;
+    }
+    .moral{
+      margin-top:14px;font-size:14px;color:var(--muted);text-align:center;
+    }
+    .toast{
+      position:fixed;right:18px;bottom:18px;background:#111827;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 8px 30px rgba(2,6,23,0.4);display:none;
+    }
+    @media (max-width:420px){
+      .icon{width:60px;height:60px;font-size:26px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>WEB BUG BY Zyn Hubs</h1>
+    </header>
+
+    <div class="grid" id="grid">
+      <div class="card">
+        <div class="icon">🔒</div>
+        <div class="label">Metode Kenon V1</div>
+      </div>
+    </div>
+
+    <div class="single">
+      <input id="phone" type="text" placeholder="Masukkan nomor WhatsApp (contoh: +62812xxxx)" />
+      <button id="copyBtn">Salin Pesan</button>
+    </div>
+
+    <p class="note">
+      Tombol "Salin Pesan" akan menyalin sebuah template netral untuk meminta investigasi. Jangan gunakan untuk menuduh atau menyerang orang.
+    </p>
+
+    <!-- Pesan tambahan sesuai permintaan -->
+    <div class="moral">
+      <em>"jangan ngebug orang yang tidak pernah salah dengan mu, jika tidak kau adalah pengecut."</em>
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast">Tersalin ke clipboard!</div>
+
+  <script>
+    // Template pesan netral (bahasa Portugis sederhana) — tidak menuduh.
+    function buildMessage(number){
+      const phoneText = number ? number : "[nomor]";
+      return `Quero reportar a conta do WhatsApp com o número ${phoneText}. Solicito que os desenvolvedores/investigadores verifiquem atividades suspeitas associadas a esta conta e tomem as medidas apropriadas, se necessário. Obrigado.`;
+    }
+
+    const copyBtn = document.getElementById('copyBtn');
+    const phoneInput = document.getElementById('phone');
+    const toast = document.getElementById('toast');
+
+    copyBtn.addEventListener('click', async () => {
+      const num = phoneInput.value.trim();
+      const msg = buildMessage(num);
+
+      try {
+        await navigator.clipboard.writeText(msg);
+        showToast('Teks berhasil disalin ✅');
+      } catch (e) {
+        // fallback untuk browser lama
+        const ta = document.createElement('textarea');
+        ta.value = msg;
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          showToast('Teks berhasil disalin (fallback) ✅');
+        } catch (err) {
+          alert('Gagal menyalin. Silakan salin manual:\n\n' + msg);
+        }
+        document.body.removeChild(ta);
+      }
+    });
+
+    function showToast(text){
+      toast.textContent = text;
+      toast.style.display = 'block';
+      setTimeout(()=>{ toast.style.opacity = '1'; }, 10);
+      setTimeout(()=>{ toast.style.opacity = '0'; }, 1700);
+      setTimeout(()=>{ toast.style.display = 'none'; }, 2200);
+    }
+  </script>
+</body>
+</html>
