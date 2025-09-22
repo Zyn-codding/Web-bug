@@ -5,50 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WEB BUG BY Zyn Hubs</title>
   <style>
-    /* ===== background: try direct URL first (may or may not hotlink) =====
-       If it doesn't show, download the image and name it `background.jpg`
-       and GitHub Pages will serve it relative to this file.
-    */
-    :root{
-      --panel-bg: rgba(6,6,6,0.64);
-      --accent: #06b6d4;
-      --muted: #cbd5e1;
-      --btn:#0ea5a1;
-      --danger:#ef4444;
-      --white:#ffffff;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-
-    html,body{
-      height:100%;
+    body {
       margin:0;
+      font-family: Arial, sans-serif;
+      background:#111;
+      color:#fff;
+      text-align:center;
     }
-
-    /* If direct Google Photos link works, use it (may redirect) */
-    body{
-      background-image: url("https://photos.app.goo.gl/x9CebkyXPnCetWzA9");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color:var(--white);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+    .btn {
+      margin:8px;
+      padding:10px 14px;
+      background:#222;
+      border:0;
+      border-radius:6px;
+      color:#fff;
+      cursor:pointer;
     }
-
-    /* Fallback: if you uploaded background.jpg to same repo, uncomment next rule */
-    /* body{ background-image: url("background.jpg"); } */
-
-    /* overlay for readability */
-    .overlay{
-      position:fixed;
-      inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.65));
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      padding:18px;
-      box-sizing:border-box;
+    .btn:hover {
+      background:#444;
     }
+    .back-bottom {
+      position: fixed;
+      bottom: 18px;
+      left: 18px;
+      background: #222;
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+  <!-- Pemutar musik -->
+  <audio id="bg-music" autoplay loop controls>
+    <source src="https://e.top4top.io/m_3552yvpd60.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung pemutar audio.
+  </audio>
+
+  <h1>WORKS IN WHATSAPP</h1>
+  <p class="colorful">Developers Zyn Hubs</p>
+
+  <!-- Tombol copy -->
+  <button class="btn" onclick="copyText('Halo Saya kehilangan perangkat saya baru-baru ini dan saya perlu akun whatsapp saya dinonaktifkan sampai saya membeli Sim Baru! nomor saya adalah +62XXX')">BANNED V1</button>
+  <button class="btn" onclick="copyText('Ponsel milik saya dicuri bersama dengan informasi saya dan saya perlu nomor whatsapp saya untuk dinonaktifkan! nomor saya adalah +628XXX')">BANNED V2</button>
+  <button class="btn" onclick="copyText('Halo, saya kehilangan dokumen saya bersama dengan ponsel dan kartu SIM saya. jadi saya ingin Anda segera menonaktifkan nomor saya, saya takut seseorang dapat masuk ke akun whatsapp saya karena memiliki informasi penting tentang saya, nomornya adalah: +628XXX')">BANNED V3</button>
+  <button class="btn" onclick="copyText('Hello WhatsApp Support,\n\nMy phone and WhatsApp number have been stolen. I am afraid that my number could be used for illegal purposes such as scams or gambling promotions. For security reasons, I kindly ask you to immediately disable my WhatsApp account linked to this number:\n\n+62XXX\n\nThank you for your help.\n\nBest regards,\n[Your Name]')">BANNED V4</button>
+  <button class="btn" onclick="copyText('Dear WhatsApp Support,\n\nMy phone has been stolen together with my WhatsApp number. I am deeply concerned that my number might be misused for illegal purposes such as gambling advertisements or fraudulent activities. Therefore, I kindly request your immediate assistance to deactivate my WhatsApp account associated with this number for security reasons.\n\nMy phone number: +62XXX\n\nThank you for your prompt attention to this matter.')">BANNED Trial Phase</button>
+  <button class="btn" onclick="alert('Rules:\n1. Do not misuse.\n2. Only for learning.\n3. Use responsibly.')">RULES</button>
+
+  <!-- Tombol kembali -->
+  <button class="back-bottom" onclick="history.back()">← Kembali</button>
+
+  <script>
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Pesan telah disalin! ");
+      });
+    }
+  </script>
+</body>
+</html>    }
 
     .card{
       width:100%;
@@ -349,10 +369,19 @@ Thank you for your prompt attention to this matter.`;
   <p class="colorful">Developers Zyn Hubs</p>
 
   <!-- Tombol copy -->
-  <button class="btn" onclick="copyText(`BANNED V1 TEXT ...`)">BANNED V1</button>
-  <button class="btn" onclick="copyText(`BANNED V2 TEXT ...`)">BANNED V2</button>
-  <button class="btn" onclick="copyText(`BANNED V3 TEXT ...`)">BANNED V3</button>
-  <button class="btn" onclick="copyText(`BANNED V4 TEXT ...`)">BANNED V4</button>
+  <button class="btn" onclick="copyText(`Halo Saya kehilangan perangkat saya baru-baru ini dan saya perlu akun whatsapp saya dinonaktifkan sampai saya membeli Sim Baru! nomor saya adalah +62XXX `)">BANNED V1</button>
+  <button class="btn" onclick="copyText(`Ponsel milik saya dicuri bersama dengan informasi saya dan saya perlu nomor whatsapp saya untuk dinonaktifkan! nomor saya adalah +628XXX `)">BANNED V2</button>
+  <button class="btn" onclick="copyText(`Halo, saya kehilangan dokumen saya bersama dengan ponsel dan kartu SIM saya. jadi saya ingin Anda segera menonaktifkan nomor saya, saya takut seseorang dapat masuk ke akun whatsapp saya karena memiliki informasi penting tentang saya, nomornya adalah: +628XXX `)">BANNED V3</button>
+  <button class="btn" onclick="copyText(`Hello WhatsApp Support,
+
+My phone and WhatsApp number have been stolen. I am afraid that my number could be used for illegal purposes such as scams or gambling promotions. For security reasons, I kindly ask you to immediately disable my WhatsApp account linked to this number:
+
++62XXX
+
+Thank you for your help.
+
+Best regards,
+[Your Name]`)">BANNED V4</button>
   <button class="btn" onclick="copyText(`Dear WhatsApp Support,\n\nMy phone has been stolen together with my WhatsApp number. I am deeply concerned that my number might be misused for illegal purposes such as gambling advertisements or fraudulent activities. Therefore, I kindly request your immediate assistance to deactivate my WhatsApp account associated with this number for security reasons.\n\nMy phone number: +62XXX\n\nThank you for your prompt attention to this matter.`)">BANNED Trial Phase</button>
   <button class="btn" onclick="alert('Rules:\n1. Do not misuse.\n2. Only for learning.\n3. Use responsibly.')">RULES</button>
 
@@ -362,7 +391,7 @@ Thank you for your prompt attention to this matter.`;
   <script>
     function copyText(text) {
       navigator.clipboard.writeText(text).then(() => {
-        alert("Pesan disalin!");
+        alert("Pesan telah disalin! ");
       });
     }
   </script>
